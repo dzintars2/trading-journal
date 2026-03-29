@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Analytics | The Sovereign Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#00225a",
+              "surface-bright": "#002867",
+              "surface-container-highest": "#00225a",
+              "on-secondary-fixed": "#850010",
+              "surface-container-low": "#06122d",
+              "inverse-primary": "#006d4a",
+              "background": "#060e20",
+              "on-surface-variant": "#91aaeb",
+              "on-background": "#dee5ff",
+              "on-primary-container": "#5ae9ac",
+              "surface-container": "#05183c",
+              "error-dim": "#bb5551",
+              "on-primary-fixed-variant": "#006947",
+              "on-primary-fixed": "#004930",
+              "primary-dim": "#3cd096",
+              "tertiary-fixed": "#4388fd",
+              "surface-tint": "#4edea3",
+              "surface-container-high": "#031d4b",
+              "on-secondary-container": "#ffa9a2",
+              "primary": "#4edea3",
+              "error-container": "#7f2927",
+              "primary-container": "#005236",
+              "surface-container-lowest": "#000000",
+              "on-tertiary-fixed": "#000000",
+              "on-tertiary": "#001e4a",
+              "primary-fixed": "#6ffbbe",
+              "on-secondary-fixed-variant": "#b51621",
+              "secondary-dim": "#ff716a",
+              "inverse-on-surface": "#4d556b",
+              "inverse-surface": "#faf8ff",
+              "error": "#ee7d77",
+              "on-primary": "#004a31",
+              "tertiary-container": "#4388fd",
+              "on-tertiary-container": "#000311",
+              "on-secondary": "#490005",
+              "secondary-fixed": "#ffdad7",
+              "secondary": "#ff716a",
+              "outline": "#5b74b1",
+              "surface": "#060e20",
+              "outline-variant": "#2b4680",
+              "secondary-fixed-dim": "#ffc7c2",
+              "tertiary-fixed-dim": "#317bef",
+              "on-error-container": "#ff9993",
+              "tertiary-dim": "#699cff",
+              "on-tertiary-fixed-variant": "#001435",
+              "surface-dim": "#060e20",
+              "tertiary": "#699cff",
+              "secondary-container": "#7d000f",
+              "on-surface": "#dee5ff",
+              "on-error": "#490106",
+              "primary-fixed-dim": "#5fedb0"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full flex justify-between items-center px-6 py-3 bg-[#060e20] border-b border-[#2b4680]/20">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight font-headline text-primary">The Sovereign Archive</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#91aaeb] hover:text-[#dee5ff] transition-colors text-sm font-medium" href="#">Market Overview</a>
+<a class="text-[#4edea3] font-bold border-b-2 border-[#4edea3] pb-1 text-sm font-medium" href="#">Performance Analytics</a>
+<a class="text-[#91aaeb] hover:text-[#dee5ff] transition-colors text-sm font-medium" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-[#1a2b4d] rounded-md transition-all duration-200 hover:bg-[#2b4680]/40">
+<span class="material-symbols-outlined text-sm text-primary">account_balance_wallet</span>
+<span class="text-sm font-headline text-[#dee5ff]">$142,500.00</span>
+</div>
+<button class="material-symbols-outlined text-[#91aaeb] hover:text-[#dee5ff] p-2 transition-all duration-200">notifications</button>
+<button class="material-symbols-outlined text-[#91aaeb] hover:text-[#dee5ff] p-2 transition-all duration-200">settings</button>
+<button class="bg-primary text-on-primary font-headline font-bold px-4 py-1.5 rounded-sm hover:brightness-110 active:scale-95 transition-all duration-150 text-sm">New Trade</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col bg-[#0b1733] border-r border-[#2b4680]/10 pt-20">
+<div class="px-6 py-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-sm bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img alt="Pro Trader Avatar" data-alt="close-up portrait of a professional male trader in a dark studio setting with teal and navy rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVNThlqFBCT7HqP2rrxuzxamyUmYpIGlydVly9NdM0XK6vzmcTjB03GMYGsBYr3XaFc_8U58ZktZq-OVaumLTennsvNsxTexQ_UEow4ipNaA4NfgVi4omVNeymcDUjPlB1gDAs1yE4o-qIsBSBHNwaGZdEYCYZlB3XLhe7_34DuJu4BlKfF5xAMSlL3XakJYNKbZLKuANEl9RrGn8toAx91O2ksRfdaYAZ6BwW05Mwur-GGuusMqZ5btMGF2Vd0K8KMT7XEKPg9Jk"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-primary text-sm leading-tight">Sovereign Analyst</h3>
+<p class="text-[10px] text-[#91aaeb] uppercase tracking-widest">Live Account • MT5</p>
+</div>
+</div>
+</div>
+<nav class="flex-1">
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label font-medium tracking-wide text-sm">Dashboard</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">table_rows</span>
+<span class="font-label font-medium tracking-wide text-sm">Trade Log</span>
+</a>
+<a class="bg-[#1a2b4d] text-primary border-r-4 border-primary px-6 py-4 flex items-center gap-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label font-medium tracking-wide text-sm">Analytics</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-label font-medium tracking-wide text-sm">Strategy Lab</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label font-medium tracking-wide text-sm">Reports</span>
+</a>
+</nav>
+<div class="p-6">
+<button class="w-full bg-primary/10 border border-primary/20 text-primary py-2 font-headline font-bold text-xs uppercase tracking-tighter hover:bg-primary/20 transition-all">Upgrade to Alpha</button>
+</div>
+<div class="mt-auto border-t border-[#2b4680]/10">
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] transition-all" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label font-medium tracking-wide text-sm">Help Center</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label font-medium tracking-wide text-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<!-- Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-headline font-bold text-on-background tracking-tight">Performance Intelligence</h1>
+<p class="text-on-surface-variant font-body mt-1">Quantitative deep-dive into execution alpha and behavioral risk metrics.</p>
+</div>
+<div class="flex gap-3">
+<div class="bg-surface-container px-4 py-2 border border-outline-variant/10 flex items-center gap-4">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest">Date Range</span>
+<span class="text-sm font-headline text-on-surface">Oct 01 - Dec 31, 2023</span>
+</div>
+<button class="bg-surface-container-high px-4 py-2 text-primary text-xs font-bold uppercase tracking-tighter hover:brightness-125 transition-all">Export JSON</button>
+</div>
+</header>
+<!-- KPI Row: Trading Habits -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container p-6 border-l-2 border-primary">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Profit Factor</p>
+<div class="flex items-baseline justify-between">
+<h2 class="text-3xl font-headline font-bold text-on-background">2.84</h2>
+<span class="text-primary text-[10px] font-bold">+12% vs last month</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 mt-4">
+<div class="bg-primary h-full w-[72%] shadow-[0_0_8px_rgba(78,222,163,0.4)]"></div>
+</div>
+</div>
+<div class="bg-surface-container p-6 border-l-2 border-tertiary">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Avg. Hold Time</p>
+<div class="flex items-baseline justify-between">
+<h2 class="text-3xl font-headline font-bold text-on-background">4h 22m</h2>
+<span class="text-tertiary text-[10px] font-bold">Intraday Profile</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 mt-4">
+<div class="bg-tertiary h-full w-[45%]"></div>
+</div>
+</div>
+<div class="bg-surface-container p-6 border-l-2 border-primary">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Best Trade (Pips)</p>
+<div class="flex items-baseline justify-between">
+<h2 class="text-3xl font-headline font-bold text-primary">+142.5</h2>
+<span class="text-on-surface-variant text-[10px] font-bold">EUR/USD Long</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 mt-4 opacity-50"></div>
+</div>
+<div class="bg-surface-container p-6 border-l-2 border-secondary">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Worst Trade (Pips)</p>
+<div class="flex items-baseline justify-between">
+<h2 class="text-3xl font-headline font-bold text-secondary">-38.2</h2>
+<span class="text-on-surface-variant text-[10px] font-bold">Gold Short</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 mt-4 opacity-50"></div>
+</div>
+</div>
+<!-- Main Analytics Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Performance by Asset: Horizontal Bar Chart -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container p-8">
+<div class="flex justify-between items-start mb-8">
+<h3 class="font-headline font-bold text-lg tracking-tight">Performance by Asset Class</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1.5 text-[10px] text-on-surface-variant font-bold"><div class="w-2 h-2 bg-primary"></div> P/L ($)</span>
+<span class="flex items-center gap-1.5 text-[10px] text-on-surface-variant font-bold"><div class="w-2 h-2 bg-outline-variant"></div> Win Rate (%)</span>
+</div>
+</div>
+<div class="space-y-6">
+<!-- EUR/USD -->
+<div class="grid grid-cols-10 items-center gap-4">
+<span class="col-span-2 text-sm font-headline font-medium">EUR/USD</span>
+<div class="col-span-6 h-8 bg-surface-container-low relative overflow-hidden">
+<div class="h-full bg-primary/20 border-r border-primary w-[85%]"></div>
+<div class="absolute inset-0 flex items-center px-3 text-[10px] font-bold text-primary uppercase tracking-tighter">+$12,400.00</div>
+</div>
+<div class="col-span-2 text-right">
+<span class="text-xs font-headline font-bold">68% WR</span>
+</div>
+</div>
+<!-- XAU/USD -->
+<div class="grid grid-cols-10 items-center gap-4">
+<span class="col-span-2 text-sm font-headline font-medium">XAU/USD</span>
+<div class="col-span-6 h-8 bg-surface-container-low relative overflow-hidden">
+<div class="h-full bg-primary/20 border-r border-primary w-[42%]"></div>
+<div class="absolute inset-0 flex items-center px-3 text-[10px] font-bold text-primary uppercase tracking-tighter">+$4,200.00</div>
+</div>
+<div class="col-span-2 text-right">
+<span class="text-xs font-headline font-bold">52% WR</span>
+</div>
+</div>
+<!-- BTC/USD -->
+<div class="grid grid-cols-10 items-center gap-4">
+<span class="col-span-2 text-sm font-headline font-medium">BTC/USD</span>
+<div class="col-span-6 h-8 bg-surface-container-low relative overflow-hidden">
+<div class="h-full bg-secondary/20 border-r border-secondary w-[18%]"></div>
+<div class="absolute inset-0 flex items-center px-3 text-[10px] font-bold text-secondary uppercase tracking-tighter">-$1,850.00</div>
+</div>
+<div class="col-span-2 text-right">
+<span class="text-xs font-headline font-bold text-secondary">31% WR</span>
+</div>
+</div>
+<!-- GBP/JPY -->
+<div class="grid grid-cols-10 items-center gap-4">
+<span class="col-span-2 text-sm font-headline font-medium">GBP/JPY</span>
+<div class="col-span-6 h-8 bg-surface-container-low relative overflow-hidden">
+<div class="h-full bg-primary/20 border-r border-primary w-[65%]"></div>
+<div class="absolute inset-0 flex items-center px-3 text-[10px] font-bold text-primary uppercase tracking-tighter">+$8,920.00</div>
+</div>
+<div class="col-span-2 text-right">
+<span class="text-xs font-headline font-bold">58% WR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Setup/Strategy Breakdown: Donut Chart Visualization -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container p-8">
+<h3 class="font-headline font-bold text-lg tracking-tight mb-8">Setup Efficiency</h3>
+<div class="flex flex-col items-center">
+<div class="relative w-48 h-48 mb-8">
+<!-- Custom CSS Circle Chart Simulation -->
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#2b4680" stroke-opacity="0.1" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#4edea3" stroke-dasharray="251.2" stroke-dashoffset="100.48" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#699cff" stroke-dasharray="251.2" stroke-dashoffset="200.96" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#ff716a" stroke-dasharray="251.2" stroke-dashoffset="238.64" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-headline font-bold text-on-background">3</span>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest">Strategies</span>
+</div>
+</div>
+<div class="w-full space-y-4">
+<div class="flex justify-between items-center bg-surface-container-low p-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium">Mean Reversion</span>
+</div>
+<span class="text-xs font-headline font-bold text-primary">+$18.2K (60%)</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-xs font-medium">Breakout/Momentum</span>
+</div>
+<span class="text-xs font-headline font-bold text-tertiary">+$6.4K (20%)</span>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-3">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-xs font-medium">Trend Retest</span>
+</div>
+<span class="text-xs font-headline font-bold text-secondary">-$2.1K (20%)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Drawdown Analysis: Area Chart -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container p-8">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline font-bold text-lg tracking-tight">Equity Drawdown Curve</h3>
+<p class="text-xs text-on-surface-variant mt-1">Real-time monitoring of max drawdown and variance.</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-secondary uppercase font-bold tracking-widest">Max Drawdown</p>
+<p class="text-2xl font-headline font-bold text-secondary">-4.2%</p>
+</div>
+</div>
+<div class="relative h-64 w-full bg-surface-container-low/50 overflow-hidden">
+<!-- Simulation of a complex path with linear gradient -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="drawdownGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ee7d77" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#ee7d77" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 0 L10 5 L20 15 L30 10 L40 40 L50 35 L60 20 L70 60 L80 40 L90 25 L100 30 V0 H0 Z" fill="url(#drawdownGradient)"></path>
+<path d="M0 0 L10 5 L20 15 L30 10 L40 40 L50 35 L60 20 L70 60 L80 40 L90 25 L100 30" fill="none" stroke="#ee7d77" stroke-width="1.5"></path>
+<!-- Grid lines -->
+<line stroke="#2b4680" stroke-width="0.1" x1="0" x2="100" y1="20" y2="20"></line>
+<line stroke="#2b4680" stroke-width="0.1" x1="0" x2="100" y1="40" y2="40"></line>
+<line stroke="#2b4680" stroke-width="0.1" x1="0" x2="100" y1="60" y2="60"></line>
+<line stroke="#2b4680" stroke-width="0.1" x1="0" x2="100" y1="80" y2="80"></line>
+</svg>
+<div class="absolute bottom-4 left-4 flex gap-8">
+<div>
+<span class="text-[9px] text-on-surface-variant uppercase font-bold block mb-1">Consecutive Wins</span>
+<span class="text-lg font-headline font-bold text-primary">9</span>
+</div>
+<div>
+<span class="text-[9px] text-on-surface-variant uppercase font-bold block mb-1">Consecutive Losses</span>
+<span class="text-lg font-headline font-bold text-secondary">3</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Time-Based Heatmap -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container p-8">
+<h3 class="font-headline font-bold text-lg tracking-tight mb-8">Performance Heatmap</h3>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-4">By Day &amp; Session</p>
+<div class="grid grid-cols-6 gap-2">
+<!-- Y-axis labels -->
+<div class="col-span-1 space-y-2">
+<div class="h-8 flex items-center justify-center text-[9px] font-bold text-on-surface-variant">MON</div>
+<div class="h-8 flex items-center justify-center text-[9px] font-bold text-on-surface-variant">TUE</div>
+<div class="h-8 flex items-center justify-center text-[9px] font-bold text-on-surface-variant">WED</div>
+<div class="h-8 flex items-center justify-center text-[9px] font-bold text-on-surface-variant">THU</div>
+<div class="h-8 flex items-center justify-center text-[9px] font-bold text-on-surface-variant">FRI</div>
+</div>
+<!-- Heatmap Grid -->
+<div class="col-span-5 grid grid-cols-4 gap-2">
+<!-- Monday -->
+<div class="h-8 bg-primary/40 rounded-sm"></div>
+<div class="h-8 bg-primary/10 rounded-sm"></div>
+<div class="h-8 bg-primary/70 rounded-sm"></div>
+<div class="h-8 bg-secondary/30 rounded-sm"></div>
+<!-- Tuesday -->
+<div class="h-8 bg-primary/20 rounded-sm"></div>
+<div class="h-8 bg-primary/90 rounded-sm"></div>
+<div class="h-8 bg-primary/40 rounded-sm"></div>
+<div class="h-8 bg-primary/10 rounded-sm"></div>
+<!-- Wednesday -->
+<div class="h-8 bg-secondary/10 rounded-sm"></div>
+<div class="h-8 bg-primary/30 rounded-sm"></div>
+<div class="h-8 bg-secondary/50 rounded-sm"></div>
+<div class="h-8 bg-primary/20 rounded-sm"></div>
+<!-- Thursday -->
+<div class="h-8 bg-primary/60 rounded-sm"></div>
+<div class="h-8 bg-primary/20 rounded-sm"></div>
+<div class="h-8 bg-primary/80 rounded-sm"></div>
+<div class="h-8 bg-secondary/20 rounded-sm"></div>
+<!-- Friday -->
+<div class="h-8 bg-primary/10 rounded-sm"></div>
+<div class="h-8 bg-secondary/60 rounded-sm"></div>
+<div class="h-8 bg-secondary/10 rounded-sm"></div>
+<div class="h-8 bg-secondary/80 rounded-sm"></div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/10 flex justify-between">
+<div class="text-center">
+<p class="text-[9px] text-on-surface-variant font-bold">ASIAN</p>
+<div class="w-full h-1 bg-surface-container-low mt-1"></div>
+</div>
+<div class="text-center">
+<p class="text-[9px] text-on-surface-variant font-bold">LONDON</p>
+<div class="w-full h-1 bg-primary mt-1"></div>
+</div>
+<div class="text-center">
+<p class="text-[9px] text-on-surface-variant font-bold">NY</p>
+<div class="w-full h-1 bg-surface-container-low mt-1"></div>
+</div>
+</div>
+</section>
+</div>
+<!-- Descriptive Metadata Footer -->
+<footer class="mt-12 py-8 border-t border-[#2b4680]/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant">info</span>
+<p class="text-xs text-on-surface-variant">Analytics generated from <span class="text-on-surface font-bold">2,415 executions</span>. Last data synchronization: <span class="text-primary font-mono">2023-11-24 14:30:11 UTC</span></p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> PDF Report
+                </button>
+<button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">share</span> Share Link
+                </button>
+</div>
+</footer>
+</main>
+</body></html>

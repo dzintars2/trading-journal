@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+*.swp
+*.lock
+profile
+
+# Xcode
+build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+!project.yml
+*.xcuserstate
+xcuserdata/
+
+# SwiftData / Store files
+*.store
+*.store-wal
+*.store-shm
+
+# Swift Package Manager
+.swiftpm/
+.concurrency/
+.build/
+Packages/
+Package.resolved
+
+# Artifacts
+artifacts/
+tmp/
+brain/
+*overview.txt
+*task.md
+*implementation_plan.md
+*walkthrough.md
+*.system_generated/

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trade Log | The Sovereign Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#00225a",
+              "surface-bright": "#002867",
+              "surface-container-highest": "#00225a",
+              "on-secondary-fixed": "#850010",
+              "surface-container-low": "#06122d",
+              "inverse-primary": "#006d4a",
+              "background": "#060e20",
+              "on-surface-variant": "#91aaeb",
+              "on-background": "#dee5ff",
+              "on-primary-container": "#5ae9ac",
+              "surface-container": "#05183c",
+              "error-dim": "#bb5551",
+              "on-primary-fixed-variant": "#006947",
+              "on-primary-fixed": "#004930",
+              "primary-dim": "#3cd096",
+              "tertiary-fixed": "#4388fd",
+              "surface-tint": "#4edea3",
+              "surface-container-high": "#031d4b",
+              "on-secondary-container": "#ffa9a2",
+              "primary": "#4edea3",
+              "error-container": "#7f2927",
+              "primary-container": "#005236",
+              "surface-container-lowest": "#000000",
+              "on-tertiary-fixed": "#000000",
+              "on-tertiary": "#001e4a",
+              "primary-fixed": "#6ffbbe",
+              "on-secondary-fixed-variant": "#b51621",
+              "secondary-dim": "#ff716a",
+              "inverse-on-surface": "#4d556b",
+              "inverse-surface": "#faf8ff",
+              "error": "#ee7d77",
+              "on-primary": "#004a31",
+              "tertiary-container": "#4388fd",
+              "on-tertiary-container": "#000311",
+              "on-secondary": "#490005",
+              "secondary-fixed": "#ffdad7",
+              "secondary": "#ff716a",
+              "outline": "#5b74b1",
+              "surface": "#060e20",
+              "outline-variant": "#2b4680",
+              "secondary-fixed-dim": "#ffc7c2",
+              "tertiary-fixed-dim": "#317bef",
+              "on-error-container": "#ff9993",
+              "tertiary-dim": "#699cff",
+              "on-tertiary-fixed-variant": "#001435",
+              "surface-dim": "#060e20",
+              "tertiary": "#699cff",
+              "secondary-container": "#7d000f",
+              "on-surface": "#dee5ff",
+              "on-error": "#490106",
+              "primary-fixed-dim": "#5fedb0"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #060e20; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #060e20; }
+        ::-webkit-scrollbar-thumb { background: #2b4680; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4edea3; }
+        .glass-panel { background: rgba(5, 24, 60, 0.7); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="text-on-background bg-background overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-[#060e20] dark:bg-[#060e20] docked full-width top-0 z-50 flex justify-between items-center w-full px-6 py-3 border-b border-[#2b4680]/20 fixed">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight font-['Space_Grotesk'] text-[#4edea3]">The Sovereign Archive</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#91aaeb] hover:text-[#dee5ff] transition-colors font-medium text-sm" href="#">Dashboard</a>
+<a class="text-[#4edea3] font-bold border-b-2 border-[#4edea3] pb-1 text-sm" href="#">Trade Log</a>
+<a class="text-[#91aaeb] hover:text-[#dee5ff] transition-colors font-medium text-sm" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#1a2b4d] transition-all duration-200 p-2 rounded flex items-center gap-2 text-[#4edea3] font-bold text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                New Trade
+            </button>
+<div class="flex items-center gap-3 border-l border-[#2b4680]/30 pl-4">
+<span class="material-symbols-outlined text-[#91aaeb] cursor-pointer hover:text-primary transition-colors" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="material-symbols-outlined text-[#91aaeb] cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#91aaeb] cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-primary/20" data-alt="professional male trader avatar in high contrast lighting with subtle teal highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-EfK2zyInLfkJCiIBnu8QDG1sU6sxiV67VbVzgF_9pCzXKSES-zpzze3ur0LRDVVzjIryCO0J8m1k6OILfd858ureEJn624UsWjLUKohWFpTRLaSajZkQVmTSDsl31leoAKx9xVtp8lTteUfyG-NQZuiPnDszZfXtuTDIvXCjk_cShrJEkt7J7TwoDHfFor4CtWVIXTikGrs4K-cTvZ5aIzZ1iLLsvBqP7Q3LbPqYjjhfCZiGXfKR-_stK4Ghn885Yjl2poSKn7I"/>
+</div>
+</div>
+</header>
+<div class="flex h-screen pt-[60px]">
+<!-- SideNavBar -->
+<aside class="bg-[#0b1733] dark:bg-[#0b1733] fixed left-0 top-0 h-full flex flex-col border-r border-[#2b4680]/10 w-64 pt-[60px] hidden md:flex">
+<div class="px-6 py-8">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center rounded border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
+</div>
+<div>
+<h2 class="font-['Space_Grotesk'] font-bold text-[#4edea3] text-sm">Sovereign Analyst</h2>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Live Account • MT5</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] font-medium tracking-wide text-sm">Dashboard</span>
+</a>
+<a class="bg-[#1a2b4d] text-[#4edea3] border-r-4 border-[#4edea3] rounded-r-none flex items-center gap-3 px-6 py-4" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="table_rows">table_rows</span>
+<span class="font-['Inter'] font-medium tracking-wide text-sm">Trade Log</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] font-medium tracking-wide text-sm">Analytics</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="science">science</span>
+<span class="font-['Inter'] font-medium tracking-wide text-sm">Strategy Lab</span>
+</a>
+<a class="text-[#91aaeb] flex items-center gap-3 px-6 py-4 hover:bg-[#132142] hover:text-[#dee5ff] transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+<span class="font-['Inter'] font-medium tracking-wide text-sm">Reports</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto px-6 py-6 border-t border-[#2b4680]/10">
+<button class="w-full py-3 px-4 bg-primary text-on-primary font-bold text-xs uppercase tracking-widest rounded-sm mb-6 hover:brightness-110 transition-all">
+                    Upgrade to Alpha
+                </button>
+<div class="space-y-4">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help_outline">help_outline</span>
+                        Help Center
+                    </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+                        Sign Out
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 bg-background overflow-y-auto">
+<div class="p-8 max-w-[1600px] mx-auto">
+<!-- Page Header & Stats Summary -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h1 class="font-headline text-4xl font-bold text-on-background mb-2 tracking-tight uppercase">Archive Log</h1>
+<p class="text-on-surface-variant font-body">Detailed execution history and performance audit.</p>
+</div>
+<div class="flex gap-4 items-center">
+<div class="bg-surface-container px-6 py-3 rounded-md border border-outline-variant/10 min-w-[140px]">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Total Trades</p>
+<p class="font-headline text-2xl font-bold">1,248</p>
+</div>
+<div class="bg-surface-container px-6 py-3 rounded-md border border-outline-variant/10 min-w-[140px]">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Win Rate</p>
+<p class="font-headline text-2xl font-bold text-primary">64.2%</p>
+</div>
+<div class="bg-surface-container px-6 py-3 rounded-md border border-outline-variant/10 min-w-[140px]">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Avg R-Multiple</p>
+<p class="font-headline text-2xl font-bold text-tertiary">1.82</p>
+</div>
+</div>
+</div>
+<!-- Search & Filters Bar -->
+<div class="bg-surface-container-low p-4 rounded-md border border-outline-variant/10 mb-8 flex flex-col xl:flex-row gap-4 items-center">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-outline-variant/20 rounded-sm pl-10 pr-4 py-2.5 text-sm focus:border-primary focus:ring-0 text-on-surface transition-all" placeholder="Search Symbol, Strategy or ID..." type="text"/>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full xl:w-auto">
+<select class="bg-surface-container-lowest border-outline-variant/20 rounded-sm text-xs font-medium px-3 py-2.5 text-on-surface focus:border-primary focus:ring-0">
+<option>All Symbols</option>
+<option>EURUSD</option>
+<option>NAS100</option>
+<option>XAUUSD</option>
+<option>GBPUSD</option>
+</select>
+<select class="bg-surface-container-lowest border-outline-variant/20 rounded-sm text-xs font-medium px-3 py-2.5 text-on-surface focus:border-primary focus:ring-0">
+<option>Outcome</option>
+<option>Wins Only</option>
+<option>Losses Only</option>
+<option>Breakeven</option>
+</select>
+<select class="bg-surface-container-lowest border-outline-variant/20 rounded-sm text-xs font-medium px-3 py-2.5 text-on-surface focus:border-primary focus:ring-0">
+<option>Strategy</option>
+<option>ICT Silver Bullet</option>
+<option>Order Block Rejection</option>
+<option>Trend Continuum</option>
+</select>
+<select class="bg-surface-container-lowest border-outline-variant/20 rounded-sm text-xs font-medium px-3 py-2.5 text-on-surface focus:border-primary focus:ring-0">
+<option>Timeframe</option>
+<option>M1</option>
+<option>M5</option>
+<option>M15</option>
+<option>H1</option>
+</select>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/20 pl-4 w-full xl:w-auto justify-end">
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface-variant p-2 rounded transition-colors" title="Export to PDF">
+<span class="material-symbols-outlined text-lg" data-icon="picture_as_pdf">picture_as_pdf</span>
+</button>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface-variant p-2 rounded transition-colors" title="Export to CSV">
+<span class="material-symbols-outlined text-lg" data-icon="csv">csv</span>
+</button>
+<button class="bg-surface-container-highest hover:bg-primary hover:text-on-primary text-on-surface-variant px-4 py-2 rounded transition-all text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span>
+                            Bulk Export
+                        </button>
+</div>
+</div>
+<!-- Trade Table Container -->
+<div class="bg-surface-container rounded-md overflow-hidden border border-outline-variant/5">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse font-body">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant/20">
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Date / Time</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Symbol</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Side</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Entry / Close</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Outcome</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-right">Pips</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-right">Profit ($)</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-right">R-Multiple</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-background">Oct 24, 2023</span>
+<span class="text-[10px] text-on-surface-variant">14:32:10 NY</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full"></span>
+<span class="text-sm font-bold font-headline">NAS100</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary-container text-primary-dim border border-primary/20">Long</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-xs font-mono">
+<span class="text-on-surface">15124.50</span>
+<span class="text-on-surface-variant">15248.12</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-tight">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+                                            Win
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-primary font-bold">+123.6</td>
+<td class="px-6 py-5 text-right font-headline text-sm text-primary font-bold">+$2,450.00</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-tertiary">3.2R</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="open_in_new">open_in_new</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-highest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-background">Oct 24, 2023</span>
+<span class="text-[10px] text-on-surface-variant">08:15:44 NY</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-error rounded-full"></span>
+<span class="text-sm font-bold font-headline">EURUSD</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-secondary-container text-secondary-dim border border-secondary/20">Short</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-xs font-mono">
+<span class="text-on-surface">1.06540</span>
+<span class="text-on-surface-variant">1.06620</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-secondary/10 text-secondary border border-secondary/20 text-[10px] font-bold uppercase tracking-tight">
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+                                            Loss
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-secondary font-bold">-8.0</td>
+<td class="px-6 py-5 text-right font-headline text-sm text-secondary font-bold">-$400.00</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-on-surface-variant">-1.0R</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="open_in_new">open_in_new</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-background">Oct 23, 2023</span>
+<span class="text-[10px] text-on-surface-variant">21:05:12 NY</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full"></span>
+<span class="text-sm font-bold font-headline">XAUUSD</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary-container text-primary-dim border border-primary/20">Long</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-xs font-mono">
+<span class="text-on-surface">1982.15</span>
+<span class="text-on-surface-variant">1988.45</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20 text-[10px] font-bold uppercase tracking-tight">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+                                            Win
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-primary font-bold">+63.0</td>
+<td class="px-6 py-5 text-right font-headline text-sm text-primary font-bold">+$1,260.00</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-tertiary">2.5R</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="open_in_new">open_in_new</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-highest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-background">Oct 23, 2023</span>
+<span class="text-[10px] text-on-surface-variant">15:50:00 NY</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full"></span>
+<span class="text-sm font-bold font-headline">NAS100</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-secondary-container text-secondary-dim border border-secondary/20">Short</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-xs font-mono">
+<span class="text-on-surface">15302.75</span>
+<span class="text-on-surface-variant">15312.75</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-secondary/10 text-secondary border border-secondary/20 text-[10px] font-bold uppercase tracking-tight">
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+                                            Loss
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-secondary font-bold">-10.0</td>
+<td class="px-6 py-5 text-right font-headline text-sm text-secondary font-bold">-$200.00</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-on-surface-variant">-0.5R</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="open_in_new">open_in_new</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-background">Oct 22, 2023</span>
+<span class="text-[10px] text-on-surface-variant">11:20:05 NY</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full"></span>
+<span class="text-sm font-bold font-headline">GBPUSD</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary-container text-primary-dim border border-primary/20">Long</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-xs font-mono">
+<span class="text-on-surface">1.21500</span>
+<span class="text-on-surface-variant">1.21500</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-outline-variant/10 text-on-surface-variant border border-outline-variant/20 text-[10px] font-bold uppercase tracking-tight">
+<span class="w-1 h-1 bg-on-surface-variant rounded-full"></span>
+                                            B.E.
+                                        </span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-on-surface-variant font-bold">0.0</td>
+<td class="px-6 py-5 text-right font-headline text-sm text-on-surface-variant font-bold">$0.00</td>
+<td class="px-6 py-5 text-right font-mono text-xs text-on-surface-variant">0.0R</td>
+<td class="px-6 py-5 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="open_in_new">open_in_new</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-high border-t border-outline-variant/20 flex items-center justify-between">
+<p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-widest">Showing 1-10 of 1,248 trades</p>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-on-surface-variant border border-outline-variant/10 hover:bg-surface-bright disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary text-xs font-bold border border-primary/20">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-on-surface-variant text-xs font-bold border border-outline-variant/10 hover:bg-surface-bright">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-on-surface-variant text-xs font-bold border border-outline-variant/10 hover:bg-surface-bright">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-on-surface-variant text-xs font-bold border border-outline-variant/10 hover:bg-surface-bright">125</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-on-surface-variant border border-outline-variant/10 hover:bg-surface-bright">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Insights (Asymmetric Layout) -->
+<div class="mt-12 grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Trade Distribution Card -->
+<div class="xl:col-span-2 bg-surface-container-low rounded-md p-6 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline text-lg font-bold uppercase tracking-tight">Strategy Distribution</h3>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Weekly Performance</span>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+<span>ICT Silver Bullet</span>
+<span class="text-primary">42 Trades (72% Win)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 72%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+<span>Order Block Rejection</span>
+<span class="text-tertiary">28 Trades (54% Win)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 54%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+<span>Trend Continuum</span>
+<span class="text-on-surface-variant">15 Trades (40% Win)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="h-full bg-on-surface-variant" style="width: 40%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Market Context Image -->
+<div class="relative group overflow-hidden rounded-md border border-outline-variant/20">
+<img alt="Financial terminal interface" class="w-full h-full object-cover grayscale opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="high contrast macro shot of a financial Bloomberg terminal with green and red candlesticks against a deep charcoal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnWqQr1L5vWa6I7JbCEUv2gyoi56beYAkulUFrHC2sH2SKz1ZbTUJQDbAy0lXNHAhNTtmoB6hJiywcBWAZodvxzTEUzHegF_Srs4v9I4ZXaPEARdD-746fkNpOnsY0NEuzVUvrRIm0DwSOnqBTXHzz0Qlb5HGCySi_WkdbQYFiWIehCHI0O1YAKIyA7xqucs8SmJFxAdCBehcHK3nPg4w-XFjwn5OFHKS4ET3sJq4jmQxG1q8qvgw5dqKawHVNm628b8PW2chMkIo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent flex flex-col justify-end p-6">
+<h4 class="font-headline text-xl font-bold uppercase tracking-tight text-on-background">Market Session Context</h4>
+<p class="text-sm text-on-surface-variant mt-2">NYC AM Session remains the highest probability window for current Alpha strategies.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button (Only on Mobile for Quick Entry) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center z-[100] hover:scale-105 active:scale-95 duration-150 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+</body></html>
