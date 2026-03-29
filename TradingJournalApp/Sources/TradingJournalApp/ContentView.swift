@@ -19,6 +19,28 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
+                // MARK: - Branding Header
+                HStack(spacing: 12) {
+                    Image("AppLogo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 36, height: 36)
+                        .cornerRadius(8)
+                        .ambientShadow()
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Sovereign")
+                            .font(.headlineMd())
+                            .foregroundColor(Theme.onBackground)
+                        Text("The Archive")
+                            .font(.labelSm())
+                            .foregroundColor(Theme.onSurfaceVariant)
+                            .opacity(0.8)
+                    }
+                }
+                .padding(.vertical, 16)
+                .listRowSeparator(.hidden)
+                
                 NavigationLink(value: NavigationItem.dashboard) {
                     Label("Dashboard", systemImage: "chart.pie")
                 }
@@ -32,7 +54,6 @@ struct ContentView: View {
                     Label("Accounts", systemImage: "person.2.badge.gearshape")
                 }
             }
-            .navigationTitle("Sovereign")
             .listStyle(.sidebar)
             
             // "The Warning Signal" but used for Primary Action (Entry)
