@@ -93,6 +93,11 @@ struct AccountsListView: View {
                             .contextMenu {
                                 Button(role: .destructive) {
                                     modelContext.delete(account)
+                                    do {
+                                        try modelContext.save()
+                                    } catch {
+                                        print("[Accounts] Failed to save after delete: \(error)")
+                                    }
                                 } label: {
                                     Label("Delete Account", systemImage: "trash")
                                 }
@@ -145,6 +150,12 @@ struct AccountsListView: View {
         
         let account = TradingAccount(name: newName, broker: newBroker, initialBalance: balance)
         modelContext.insert(account)
+        
+        do {
+            try modelContext.save()
+        } catch {
+            print("[Accounts] Failed to save: \(error)")
+        }
         
         newName = ""
         newBroker = ""

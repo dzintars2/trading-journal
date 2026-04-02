@@ -55,7 +55,7 @@ struct ContentView: View {
                 }
             }
             .listStyle(.sidebar)
-            
+            .navigationSplitViewColumnWidth(min: 200, ideal: 250, max: 300)            
             // "The Warning Signal" but used for Primary Action (Entry)
             Button(action: {
                 showingNewTradeEntry = true 
@@ -103,5 +103,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().frame(minWidth: 1000, minHeight: 600)
 }

@@ -65,6 +65,11 @@ struct TradeLogListView: View {
     
     private func deleteTrade(_ trade: Trade) {
         modelContext.delete(trade)
+        do {
+            try modelContext.save()
+        } catch {
+            print("[TradeLog] Failed to save after delete: \(error)")
+        }
     }
 }
 

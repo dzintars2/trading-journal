@@ -279,6 +279,12 @@ struct TradeEntryDetailsView: View {
             modelContext.insert(newTrade)
         }
         
+        do {
+            try modelContext.save()
+        } catch {
+            print("[TradeEntry] Failed to save: \(error)")
+        }
+        
         dismiss()
     }
 }
